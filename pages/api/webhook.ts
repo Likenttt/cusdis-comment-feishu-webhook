@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import chatBot from 'vanilla-feishu-robot'
+
+const chatBot = require('vanilla-feishu-robot');
 
 type Data = {
     name: string
