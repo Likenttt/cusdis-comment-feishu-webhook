@@ -11,7 +11,7 @@ Cusdis will send webhook notifications when new comments arrive. Just post this 
 2. fork本项目clone代码，准备部署到你喜欢的serverless平台
 3. 开发环境根目录创建`.env`文件，填写两个key `FEISHU_SECRET`、`FEISHU_WEBHOOK_URL`、`WEBHOOK_TOKEN`(自己定义的口令)，部署以后需要配置3个key为环境变量。OFC，如果你本地使用vercel --prod来部署，那就不必了。
 4. 我们的api在`pages/api/[webhook_token].ts`下, token会包含在链接中，值同`WEBHOOK_TOKEN`，建议用uuid随机一个长字符串。如果配置WEBHOOK_TOKEN为`sdsdf0b2c6f764`，那么在cusdis的webhook应该填写 `domain + /api/sdsdf0b2c6f764`, 例如https://cusdis-feishu-webhook.newrathon.com/api/sdsdf0b2c6f764。其他文件无需care
-
+5. Cusdis 后台填写webhook正式地址![cusdis配置](./images/cusdis-admin.jpg)
 ## 测试方法
 
 ```bash
@@ -20,7 +20,11 @@ curl -X "POST" "http://localhost:3000/api/c6f7764e5284feb3050c8fa6bp84b090a" \
      -H 'Content-Type: text/plain; charset=utf-8' \
      -d $'{"type":"new_comment","data":{"by_nickname":"李二牛","by_email":"","content":"三点几嘞,饮茶先","page_id":"xxx","page_title":"Connect IQ从入门到放弃","project_title":"Newrathon Tech.","approve_link":""}}
 ```
-效果
+效果如下
+
+![通知](./images/notification.jpg)
+
+![消息气泡](./images/message.jpg)
 
 ## Deploy on Vercel
 
