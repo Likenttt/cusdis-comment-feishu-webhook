@@ -25,6 +25,13 @@ export default function handler(
      *   }
      * }
      */
+        // req.query.webhook_token -> "c6f7764e5284feb3050c8fa6bp84b090a"
+        // pages/api/[webhook_token].ts -> /api/c6f7764e5284feb3050c8fa6bp84b090a
+        // req.query.webhook_token -> "c6f7764e5284feb3050c8fa6bp84b090a"
+    const { webhook_token } = req.query
+    if(!webhook_token || webhook_token != process.env.WEBHOOK_TOKEN){
+        res.status(401)
+    }
     const {type, data} = req.body
     if (!type || type !== 'new_comment') {
         res.status(200)
